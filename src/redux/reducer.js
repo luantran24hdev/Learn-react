@@ -27,20 +27,20 @@ const initState = {
 };
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
-    case "/todoList/addTodo":
+    case "todoList/addTodo":
       return {
         ...state,
-        todoList: [
-          ...state.todoList,
-          {
-            id: 5,
-            name: "Learn soccer",
-            completed: false,
-            priority: "Low",
-          },
-        ],
+        todoList: [...state.todoList, action.payload],
       };
 
+    case "filters/searchFilterChange":
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          search: action.payload,
+        },
+      };
     default:
       return state;
   }

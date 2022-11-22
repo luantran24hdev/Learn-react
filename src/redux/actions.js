@@ -4,3 +4,10 @@ export const addTodo = (data) => {
     payload: data,
   };
 };
+
+export const searchFilterChange = (data) => {
+  return {
+    type: "filters/searchFilterChange",
+    payload: data,
+  };
+};
