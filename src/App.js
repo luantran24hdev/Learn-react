@@ -1,7 +1,7 @@
 import TodoList from "./components/TodoList";
 import Textfield from '@atlaskit/textfield';
 import Button from '@atlaskit/button';
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { v4 } from 'uuid';
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -13,6 +13,9 @@ function App() {
     setTodoList([...todoList, {id: v4(), name: textInput, isCompleted: false}])
     setTextInput('')
   }
+  const parentToChild = useCallback ((id) => {
+    setTodoList(prevState => prevState.map(item => item.id === id ? {...item, isCompleted : true} : item))
+  })
   return (
    <div>
     
@@ -21,7 +24,7 @@ function App() {
     value={textInput} onChange={handleTextInputChange}
     >
     </Textfield>
-    <TodoList todoList={todoList}/>
+    <TodoList todoList={todoList} parentToChild= {parentToChild}/>
    </div>
   );
 }
