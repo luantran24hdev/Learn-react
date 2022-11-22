@@ -1,14 +1,38 @@
 import TodoList from "./components/TodoList";
 import Textfield from "@atlaskit/textfield";
 import Button from "@atlaskit/button";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useReducer } from "react";
 import EditorRemoveIcon from "@atlaskit/icon/glyph/editor/remove";
 
 import { v4 } from "uuid";
 import "./App.css";
 
 const TODO_KEY = "TODO_APP";
+
+const reducer = (state, action) =>{
+  switch (action) {
+    case 'plus':
+      
+      return state + 1;
+      case 'reduce':
+      
+      return state - 1;
+      case 'remove_all':
+
+      return 0 ;
+  
+    default:
+     return state;
+  }
+}
 function App() {
+
+
+// test
+const [count, dispatch] = useReducer(reducer, 0)
+
+// test
+
   const [todoList, setTodoList] = useState([]);
   const [textInput, setTextInput] = useState("");
   useEffect(() => {
@@ -46,6 +70,16 @@ function App() {
   });
   return (
     <div>
+
+      {/* tesr useReduce */}
+      <p>{count}</p>
+
+      <button onClick={()=>{ dispatch('plus') }}>Plus</button>
+      <button onClick={()=>{dispatch('reduce')}}>reduce</button>
+      <button  onClick={()=>{dispatch('remove_all')}}>Remove all</button>
+
+
+      {/* tesr */}
       <div className="d-flex">
         <h3>Today</h3>{" "}
         <span>
