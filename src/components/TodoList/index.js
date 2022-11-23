@@ -2,16 +2,14 @@ import { Col, Row, Input, Button, Select, Tag } from "antd";
 import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../redux/actions";
-import { todoListSelector, searchTextSelector } from "../../redux/selector";
+import { todosRemainingSelector } from "../../redux/selector";
 import { v4 } from "uuid";
 import { useState } from "react";
 export default function TodoList() {
   const [todoName, setTodoName] = useState("");
   const [todoPriority, setPriority] = useState("Medium");
 
-  const todoList = useSelector(todoListSelector);
-  const searchText = useSelector(searchTextSelector);
-  console.log("todoListSelector----------", todoList);
+  const todoList = useSelector(todosRemainingSelector);
   const handleInputChange = (e) => {
     setTodoName(e.target.value);
   };
