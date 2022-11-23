@@ -23,7 +23,6 @@ export default function Filters() {
 
   const handleSelectedStatus = (e) => {
     setfilterStatus(e.target.value);
-    console.log("filterStatus", filterStatus);
     dispatch(FiltersSlice.actions.searchFilterByStatus(e.target.value));
   };
   const handlePriority = (value) => {
