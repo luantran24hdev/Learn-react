@@ -35,6 +35,7 @@ export default function TodoList() {
       <Col span={24} style={{ height: "calc(100% - 40px)", overflowY: "auto" }}>
         {todoList.map((item) => (
           <Todo
+            id={item.id}
             key={item.id}
             name={item.name}
             prioriry={item.priority}
