@@ -18,3 +18,10 @@ export const searchFilterByStatus = (data) => {
     payload: data,
   };
 };
+
+export const priorityFilter = (data) => {
+  return {
+    type: "filters/priorityFilter",
+    payload: data,
+  };
+};
