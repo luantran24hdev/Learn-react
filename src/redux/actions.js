@@ -11,3 +11,10 @@ export const searchFilterChange = (data) => {
     payload: data,
   };
 };
+
+export const searchFilterByStatus = (data) => {
+  return {
+    type: "filters/searchFilterByStatus",
+    payload: data,
+  };
+};
