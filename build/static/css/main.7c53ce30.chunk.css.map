@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAEA,gDACE,WACF","file":"main.7c53ce30.chunk.css","sourcesContent":["@import '~antd/dist/antd.css';\n\n.ant-select-multiple .ant-select-selection-item {\n  height: 27px;\n}"]}
