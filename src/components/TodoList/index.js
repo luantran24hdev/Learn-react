@@ -1,4 +1,4 @@
-import { Col, Row, Input, Button, Select, Tag } from "antd";
+import { Col, Row, Input, Button, Select, Tag, Modal } from "antd";
 import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux";
 import { todosRemainingSelector } from "../../redux/selector";
@@ -13,6 +13,22 @@ export default function TodoList() {
   const [firstLoad, setFirstLoad] = useState(true);
   const [todoName, setTodoName] = useState("");
   const [todoPriority, setPriority] = useState("Medium");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRemoveAll = () => {
+    setIsModalOpen(false);
+    dispatch(todoListSlice.actions.removeTodoList([]));
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const showPopup = () => {
+    setIsModalOpen(true);
+  };
+  const parentToChild = useCallback((id) => {
+    dispatch(todoListSlice.actions.removeOneItem(id));
+  });
 
   const todoList = useSelector(todosRemainingSelector);
   useEffect(() => {
@@ -24,7 +40,6 @@ export default function TodoList() {
   }, [todoList]);
 
   useEffect(() => {
-    // const dataGetLocalStorage = ;
     const parsrData = JSON.parse(localStorage.getItem(TODO_KEY_NEW));
     if (parsrData && parsrData.length != 0) {
       dispatch(todoListSlice.actions.newTodoList(parsrData));
@@ -50,30 +65,24 @@ export default function TodoList() {
       })
     );
   };
-  const handleRemoveAll = () => {
-    dispatch(todoListSlice.actions.removeTodoList([]));
-  };
-  const parentToChild = useCallback((id) => {
-    dispatch(todoListSlice.actions.removeOneItem(id));
 
-    // console.log("id12", id);
-    // setTodoList((prevState) =>
-    //   prevState.map((item) =>
-    //     item.id === id ? { ...item, isCompleted: true } : item
-    //   )
-    // );
-  });
   return (
     <Row style={{ height: "calc(100% - 40px)" }}>
       <Button
-        onClick={() => {
-          handleRemoveAll();
-        }}
         style={{ marginBottom: "15px" }}
         type="danger"
+        onClick={showPopup}
       >
         Remove All
       </Button>
+      <Modal
+        title="Todo Modal"
+        open={isModalOpen}
+        onOk={handleRemoveAll}
+        onCancel={handleCancel}
+      >
+        <p>Are you sure remove all?</p>
+      </Modal>
       <Col span={24}>
         <Input.Group style={{ display: "flex" }} compact>
           <Input value={todoName} onChange={handleInputChange} />

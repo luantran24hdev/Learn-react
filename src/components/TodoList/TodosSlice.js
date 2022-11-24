@@ -49,7 +49,6 @@ export default createSlice({
       const objWithIdIndex = state.data.find(
         (obj) => obj.id === action.payload
       );
-      console.log("objWithIdIndex", objWithIdIndex);
       state.data.splice(objWithIdIndex, 1);
     },
   },
