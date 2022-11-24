@@ -12,6 +12,13 @@ export const toggleTodo = (data) => {
   };
 };
 
+export const newTodoList = (data) => {
+  return {
+    type: "todoList/newTodoList",
+    payload: data,
+  };
+};
+
 export const searchFilterChange = (data) => {
   return {
     type: "filters/searchFilterChange",

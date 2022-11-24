@@ -3,14 +3,32 @@ import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux";
 import { todosRemainingSelector } from "../../redux/selector";
 import { v4 } from "uuid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import todoListSlice from "./TodosSlice";
+
+const TODO_KEY_NEW = "TODO_APP_NEW";
 export default function TodoList() {
+  const dispatch = useDispatch();
+
   const [todoName, setTodoName] = useState("");
   const [todoPriority, setPriority] = useState("Medium");
 
   const todoList = useSelector(todosRemainingSelector);
+
+  useEffect(() => {
+    localStorage.setItem(TODO_KEY_NEW, JSON.stringify(todoList));
+  }, [todoList]);
+  useEffect(() => {
+    // localStorage.setItem(TODO_KEY_NEW, JSON.stringify(todoList));
+    const dataGetLocalStorage = localStorage.getItem(TODO_KEY_NEW);
+    const parsrData = JSON.parse(dataGetLocalStorage);
+    console.log("parsrData", parsrData);
+    if (parsrData.length != 0) {
+      dispatch(todoListSlice.actions.newTodoList(parsrData));
+    }
+  }, [todoList]);
+
   const handleInputChange = (e) => {
     setTodoName(e.target.value);
   };
@@ -18,7 +36,6 @@ export default function TodoList() {
     setPriority(value);
   };
 
-  const dispatch = useDispatch();
   const handleAddButtonClick = () => {
     setTodoName("");
     //dispath
