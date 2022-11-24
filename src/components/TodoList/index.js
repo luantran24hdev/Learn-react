@@ -10,24 +10,28 @@ import todoListSlice from "./TodosSlice";
 const TODO_KEY_NEW = "TODO_APP_NEW";
 export default function TodoList() {
   const dispatch = useDispatch();
-
+  const [firstLoad, setFirstLoad] = useState(true);
   const [todoName, setTodoName] = useState("");
   const [todoPriority, setPriority] = useState("Medium");
 
   const todoList = useSelector(todosRemainingSelector);
-
   useEffect(() => {
-    localStorage.setItem(TODO_KEY_NEW, JSON.stringify(todoList));
-  }, [todoList]);
-  useEffect(() => {
-    // localStorage.setItem(TODO_KEY_NEW, JSON.stringify(todoList));
-    const dataGetLocalStorage = localStorage.getItem(TODO_KEY_NEW);
-    const parsrData = JSON.parse(dataGetLocalStorage);
-    console.log("parsrData", parsrData);
-    if (parsrData.length != 0) {
-      dispatch(todoListSlice.actions.newTodoList(parsrData));
+    if (!firstLoad) {
+      localStorage.setItem(TODO_KEY_NEW, JSON.stringify(todoList));
+    } else {
+      setFirstLoad(false);
     }
   }, [todoList]);
+
+  useEffect(() => {
+    const dataGetLocalStorage = localStorage.getItem(TODO_KEY_NEW);
+    const parsrData = JSON.parse(dataGetLocalStorage);
+    setTimeout(() => {
+      if (parsrData.length != 0) {
+        dispatch(todoListSlice.actions.newTodoList(parsrData));
+      }
+    }, 300);
+  }, []);
 
   const handleInputChange = (e) => {
     setTodoName(e.target.value);

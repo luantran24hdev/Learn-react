@@ -26,20 +26,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export default createSlice({
   name: "todoList",
-  initialState: [],
+  initialState: {
+    data: [],
+  },
   reducers: {
     addTodo: (state, action) => {
-      state.push(action.payload);
+      state.data.push(action.payload);
     },
     toggleTodo: (state, action) => {
-      const currentTodo = state.find((item) => item.id === action.payload);
+      const currentTodo = state.data.find((item) => item.id === action.payload);
       if (currentTodo) {
         currentTodo.completed = !currentTodo.currentTodo;
       }
     },
     newTodoList: (state, action) => {
-      console.log("action", action);
-      state = action.payload;
+      state.data = action.payload;
     },
   },
 });
