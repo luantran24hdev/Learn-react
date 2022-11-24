@@ -18,6 +18,18 @@ export const newTodoList = (data) => {
     payload: data,
   };
 };
+export const removeTodoList = (data) => {
+  return {
+    type: "todoList/removeTodoList",
+    payload: data,
+  };
+};
+export const removeOneItem = (data) => {
+  return {
+    type: "todoList/removeOneItem",
+    payload: data,
+  };
+};
 
 export const searchFilterChange = (data) => {
   return {

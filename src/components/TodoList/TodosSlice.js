@@ -42,5 +42,15 @@ export default createSlice({
     newTodoList: (state, action) => {
       state.data = action.payload;
     },
+    removeTodoList: (state, action) => {
+      state.data = action.payload;
+    },
+    removeOneItem: (state, action) => {
+      const objWithIdIndex = state.data.find(
+        (obj) => obj.id === action.payload
+      );
+      console.log("objWithIdIndex", objWithIdIndex);
+      state.data.splice(objWithIdIndex, 1);
+    },
   },
 });

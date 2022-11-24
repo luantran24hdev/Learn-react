@@ -23,7 +23,7 @@ function App() {
       <Title
         style={{ textAlign: "center", color: "#ba8fff", fontSize: "20px" }}
       >
-        Today Tasks
+        {/* Today Tasks */}
       </Title>
       <Filters />
       <Divider />

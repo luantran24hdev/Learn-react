@@ -3,7 +3,7 @@ import Todo from "../Todo";
 import { useDispatch, useSelector } from "react-redux";
 import { todosRemainingSelector } from "../../redux/selector";
 import { v4 } from "uuid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import todoListSlice from "./TodosSlice";
 
@@ -24,13 +24,11 @@ export default function TodoList() {
   }, [todoList]);
 
   useEffect(() => {
-    const dataGetLocalStorage = localStorage.getItem(TODO_KEY_NEW);
-    const parsrData = JSON.parse(dataGetLocalStorage);
-    setTimeout(() => {
-      if (parsrData.length != 0) {
-        dispatch(todoListSlice.actions.newTodoList(parsrData));
-      }
-    }, 300);
+    // const dataGetLocalStorage = ;
+    const parsrData = JSON.parse(localStorage.getItem(TODO_KEY_NEW));
+    if (parsrData && parsrData.length != 0) {
+      dispatch(todoListSlice.actions.newTodoList(parsrData));
+    }
   }, []);
 
   const handleInputChange = (e) => {
@@ -52,8 +50,30 @@ export default function TodoList() {
       })
     );
   };
+  const handleRemoveAll = () => {
+    dispatch(todoListSlice.actions.removeTodoList([]));
+  };
+  const parentToChild = useCallback((id) => {
+    dispatch(todoListSlice.actions.removeOneItem(id));
+
+    // console.log("id12", id);
+    // setTodoList((prevState) =>
+    //   prevState.map((item) =>
+    //     item.id === id ? { ...item, isCompleted: true } : item
+    //   )
+    // );
+  });
   return (
     <Row style={{ height: "calc(100% - 40px)" }}>
+      <Button
+        onClick={() => {
+          handleRemoveAll();
+        }}
+        style={{ marginBottom: "15px" }}
+        type="danger"
+      >
+        Remove All
+      </Button>
       <Col span={24}>
         <Input.Group style={{ display: "flex" }} compact>
           <Input value={todoName} onChange={handleInputChange} />
@@ -72,6 +92,7 @@ export default function TodoList() {
               <Tag color="gray">Low</Tag>
             </Select.Option>
           </Select>
+
           <Button type="primary" onClick={handleAddButtonClick}>
             Add
           </Button>
@@ -85,6 +106,7 @@ export default function TodoList() {
             name={item.name}
             prioriry={item.priority}
             completed={item.completed}
+            parentToChild={parentToChild}
           />
         ))}
       </Col>

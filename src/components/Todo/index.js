@@ -1,4 +1,7 @@
-import { Row, Tag, Checkbox } from "antd";
+import { Row, Tag, Checkbox, Button } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
+import { SizeType } from "antd/es/config-provider/SizeContext";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions";
@@ -10,7 +13,9 @@ const priorityColorMapping = {
   Low: "gray",
 };
 
-export default function Todo({ name, prioriry, completed, id }) {
+export default function Todo({ name, prioriry, completed, id, parentToChild }) {
+  const [size, setSize] = useState("small"); // default is 'middle'
+
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(completed);
 
@@ -23,6 +28,7 @@ export default function Todo({ name, prioriry, completed, id }) {
     <Row
       justify="space-between"
       style={{
+        marginTop: 6,
         marginBottom: 3,
         ...(checked ? { opacity: 0.5, textDecoration: "line-through" } : {}),
       }}
@@ -30,9 +36,21 @@ export default function Todo({ name, prioriry, completed, id }) {
       <Checkbox checked={checked} onChange={toggleCheckbox}>
         {name}
       </Checkbox>
-      <Tag color={priorityColorMapping[prioriry]} style={{ margin: 0 }}>
-        {prioriry}
-      </Tag>
+
+      <div style={{ display: "flex" }}>
+        <Tag color={priorityColorMapping[prioriry]} style={{ margin: 0 }}>
+          {prioriry}
+        </Tag>
+        <Button
+          style={{ marginLeft: "5px" }}
+          type="danger"
+          icon={<CloseOutlined />}
+          size={size}
+          onClick={() => {
+            parentToChild(id);
+          }}
+        />
+      </div>
     </Row>
   );
 }
