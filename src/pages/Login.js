@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Form, {
   ErrorMessage,
   Field,
@@ -24,12 +26,24 @@ export const StyledForm = styled.div`
 
 export default function Register() {
   const history = useHistory();
+  const location = useLocation();
   const dispath = useDispatch();
+
+
+  const token = useSelector((state) => state.auth.access_token);
+  console.log('token',token);
+  useEffect(() => {
+    if (token) {
+      history.push("/");
+    } else {
+    }
+  }, [location, history, token]);
+
   const submit = async (data) => {  
   const { email, password } = data;
     dispath(handleLogin({ email, password })).then((res) => {
       if (res.ok) {
-        // history.push("/");
+        history.push("/");
       } else {
         console.log(res.error);
       }

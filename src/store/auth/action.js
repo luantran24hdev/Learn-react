@@ -1,8 +1,8 @@
 import axios from "../../services/axios";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_TYPE = "LOGIN_TYPE";
 export const actLogin = ({token}) => {
   return {
-    type: LOGIN_SUCCESS,
+    type: LOGIN_TYPE,
     payload: {
       token,
     },
