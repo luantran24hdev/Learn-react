@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
+import { useHistory } from "react-router-dom";
 import Form, {
-  CheckboxField,
   ErrorMessage,
   Field,
   FormFooter,
@@ -13,9 +13,9 @@ import styled from "styled-components";
 import ButtonGroup from "@atlaskit/button/button-group";
 import LoadingButton from "@atlaskit/button/loading-button";
 import Button from "@atlaskit/button/standard-button";
-import { Checkbox } from "@atlaskit/checkbox";
+import { useDispatch } from "react-redux";
 import TextField from "@atlaskit/textfield";
-
+import { handleLogin } from "../store/auth/action";
 export const StyledForm = styled.div`
   width: 50%;
   margin: 0 auto;
@@ -23,27 +23,33 @@ export const StyledForm = styled.div`
 `;
 
 export default function Register() {
+  const history = useHistory();
+  const dispath = useDispatch();
+  const submit = async (data) => {  
+  const { email, password } = data;
+    dispath(handleLogin({ email, password })).then((res) => {
+      if (res.ok) {
+        // history.push("/");
+      } else {
+        console.log(res.error);
+      }
+    });
+  };
   return (
     <StyledForm>
       <Form
         onSubmit={(data) => {
-          console.log("form data", data);
-          // return new Promise((resolve) => setTimeout(resolve, 2000)).then(() =>
-          //   data.username === "error" ? { username: "IN_USE" } : undefined
-          // );
+          submit(data);
         }}
       >
         {({ formProps, submitting }) => (
           <form {...formProps}>
-            <FormHeader
-              title="Sign in"
-              description="* Use your Google Account"
-            />
+            <FormHeader title="Sign in" />
             <FormSection>
               <Field
                 aria-required={true}
-                name="username"
-                label="Username"
+                name="email"
+                label="Email"
                 isRequired
                 defaultValue=""
               >
@@ -70,7 +76,7 @@ export default function Register() {
                 defaultValue=""
                 isRequired
                 validate={(value) =>
-                  value && value.length < 8 ? "TOO_SHORT" : undefined
+                  value && value.length < 6 ? "TOO_SHORT" : undefined
                 }
               >
                 {({ fieldProps, error, valid, meta }) => {
@@ -95,18 +101,6 @@ export default function Register() {
                   );
                 }}
               </Field>
-              <CheckboxField
-                name="remember"
-                label="Remember me"
-                defaultIsChecked
-              >
-                {({ fieldProps }) => (
-                  <Checkbox
-                    {...fieldProps}
-                    label="Always sign in on this device"
-                  />
-                )}
-              </CheckboxField>
             </FormSection>
 
             <FormFooter>

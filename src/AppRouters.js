@@ -7,7 +7,6 @@ export function AppRoutes() {
   return (
     <Switch>
       {Routers.map((route, idx) => {
-        console.log("route", route);
         return (
           <Route key={idx} exact={route.exact} path={route.path}>
             <route.component />

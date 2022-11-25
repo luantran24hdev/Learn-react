@@ -1,13 +1,9 @@
 import { combineReducers } from "redux";
-
-import userReducer from "./user/reducer";
-// import authReducer from "./auth/reducer";
-// import appReducer from "./app/reducer.js";
+import authReducer from "./auth/reducer";
 
 const frontApp = combineReducers({
-  user: userReducer,
-  // auth: authReducer,
-  // app: appReducer,
+  auth: authReducer,
 });
+console.log('----------',frontApp);
 
 export default frontApp;
