@@ -1,7 +1,8 @@
 // export const SET_USER_INFOR = "SET_USER_INFOR";
-
-// export const actSetUserInfo = () => {
+// const initState = { currentUser:{} };
+// export const actSetUserInfo = (state = initState, type) => {
 //   return {
-//     type: SET_USER_INFOR,
+//     ...state,
+//         currentUser:action.payload.user
 //   };
 // };
