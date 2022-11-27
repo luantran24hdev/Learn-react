@@ -1,4 +1,6 @@
 import axios from "../../services/axios";
+import { actShowLoading, actHideLoading } from "../loading/action";
+
 export const LOGIN_TYPE = "LOGIN_TYPE";
 export const actLogin = ({token}) => {
   return {
@@ -10,12 +12,15 @@ export const actLogin = ({token}) => {
 };
 export const handleLogin = ({ email, password }) => {
   return async (dispatch) => {
+    dispatch(actShowLoading());
     try {
       const headers = {
         Authorization:
           'Basic ' + Buffer.from(email + ':' + password).toString('base64'),
       }
+      
       const result = await axios.post('/sign-in', null, { headers })
+      dispatch(actHideLoading());
       console.log("result", result);
       if (result.status !== 200) {
         alert(result.error)
@@ -30,6 +35,7 @@ export const handleLogin = ({ email, password }) => {
         return { ok: true }
       }
     } catch (err) {
+      dispatch(actShowLoading());
       return { ok: false, error: err.message };
     }
   };

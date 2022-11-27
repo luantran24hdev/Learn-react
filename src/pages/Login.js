@@ -34,7 +34,7 @@ export default function Register() {
   console.log('token',token);
   useEffect(() => {
     if (token) {
-      history.push("/");
+      history.push("/admin");
     } else {
     }
   }, [location, history, token]);
@@ -43,7 +43,7 @@ export default function Register() {
   const { email, password } = data;
     dispath(handleLogin({ email, password })).then((res) => {
       if (res.ok) {
-        history.push("/");
+        history.push("/admin");
       } else {
         console.log(res.error);
       }
