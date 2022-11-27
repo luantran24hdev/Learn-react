@@ -3,6 +3,7 @@ import Register from "../pages/Register";
 import HomePage from "../pages/HomePage";
 import UserDetail from "../pages/UserDetail";
 import UserProfile from "../pages/UserProfile";
+import Admin from "../pages/Admin";
 
 import { PATHS } from "../paths";
 
@@ -32,4 +33,10 @@ export const Routers = [
     exact: true,
     component: UserDetail,
   },
+  {
+    path: PATHS.ADMIN,
+    exact: true,
+    component: Admin,
+  },
+  
 ];

@@ -7,6 +7,7 @@ const PATHS = {
   REGISTER: "/register",
   USER_DETAIL: "/user/:user_id",
   USER_PROFILE: "/user/profile",
+  ADMIN: "/admin",
 };
 
 export default PATHS;
