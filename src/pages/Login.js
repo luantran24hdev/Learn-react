@@ -29,18 +29,17 @@ export default function Register() {
   const location = useLocation();
   const dispath = useDispatch();
 
-
   const token = useSelector((state) => state.auth.access_token);
-  console.log('token',token);
-  useEffect(() => {
-    if (token) {
-      history.push("/admin");
-    } else {
-    }
-  }, [location, history, token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     history.push("/admin");
+  //   } else {
+  //     // history.push("/login");
+  //   }
+  // }, [location, history, token]);
 
-  const submit = async (data) => {  
-  const { email, password } = data;
+  const submit = async (data) => {
+    const { email, password } = data;
     dispath(handleLogin({ email, password })).then((res) => {
       if (res.ok) {
         history.push("/admin");
