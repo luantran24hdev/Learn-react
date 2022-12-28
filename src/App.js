@@ -21,7 +21,7 @@ export default function App() {
   };
 
   const isRenderTopHeader = () => {
-    let arrRouter = ["/admin", "/user"];
+    let arrRouter = ["/user"];
     let routerName = location.pathname;
 
     if (arrRouter.some((route) => routerName.includes(route))) return true;
