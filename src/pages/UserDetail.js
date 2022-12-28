@@ -20,7 +20,11 @@ const UserDetail = () => {
     }
   }, [location, history, token]);
 
-  return <div>UserDetail</div>;
+  return (
+    <div className="container">
+      <h1>Edit User :sssss</h1>
+    </div>
+  );
 };
 
 export default UserDetail;
