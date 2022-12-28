@@ -10,17 +10,14 @@ export const actUserProfile = ({ dataUser }) => {
     },
   };
 };
-export const handleEditUser = (dataObj) => {
-  console.log("dataObj", dataObj);
-
+export const handleEditUser = (user) => {
   return async (dispatch) => {
-    // dispatch(actShowLoading());
+    console.log("user123", user);
+    dispatch(actShowLoading());
     try {
-      const token = localStorage.getItem("access_token_login");
-
-      const result = await axios.put("/users/" + dataObj.userId, dataObj.user);
+      const result = await axios.put("/users/" + user.id, user);
       dispatch(actHideLoading());
-      console.log("result", result);
+      console.log("actions result", result);
       if (result.status !== 200) {
         alert(result.error);
         return {
@@ -32,7 +29,7 @@ export const handleEditUser = (dataObj) => {
         console.log("dataUser", dataUser);
         // localStorage.setItem('access_token_login',token);
         // dispatch(actUserProfile({dataUser}));
-        return { ok: true };
+        return { ok: true, data: dataUser };
       }
     } catch (err) {
       dispatch(actShowLoading());

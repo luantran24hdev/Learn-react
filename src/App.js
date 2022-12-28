@@ -15,11 +15,6 @@ export default function App() {
   const isRenderHeader = () => {
     let arrRouter = ["/login", "/register", "/admin", "/user"];
     let routerName = location.pathname;
-    console.log("routerName", routerName);
-    console.log(
-      "arrRouter.indexOf(routerName)",
-      arrRouter.some((route) => routerName.includes(route))
-    );
     if (arrRouter.some((route) => routerName.includes(route))) return false;
 
     return true;
@@ -28,15 +23,15 @@ export default function App() {
   const isRenderTopHeader = () => {
     let arrRouter = ["/admin", "/user"];
     let routerName = location.pathname;
-    // if router == admin ---> only admin will have topHeader
-    if (arrRouter.indexOf(routerName) !== -1) return false;
 
-    return true;
+    if (arrRouter.some((route) => routerName.includes(route))) return true;
+
+    return false;
   };
   console.log("=========isRenderHeader", isRenderHeader());
   return (
     <div className="App">
-      <TopHeader isRenderTopHeader={isRenderTopHeader()} />
+      {isRenderTopHeader() && <TopHeader />}
       {isRenderHeader() && <Header />}
       <AppRoutes />
       <Footer />

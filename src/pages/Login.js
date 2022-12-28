@@ -45,6 +45,10 @@ export default function Register() {
   const location = useLocation();
   const dispath = useDispatch();
 
+  function handleRedirectRegister(e) {
+    e.preventDefault();
+    history.push("/register");
+  }
   const token = useSelector((state) => state.auth.access_token);
   // useEffect(() => {
   //   if (token) {
@@ -57,7 +61,9 @@ export default function Register() {
   const submit = async (data) => {
     const { email, password } = data;
     dispath(handleLogin({ email, password })).then((res) => {
+      console.log("----------res", res);
       if (res.ok) {
+        alert("Login success!");
         history.push("/admin");
       } else {
         console.log(res.error);
@@ -137,7 +143,11 @@ export default function Register() {
 
               <FormFooter>
                 <ButtonGroup>
-                  <Button size="small" appearance="subtle-link">
+                  <Button
+                    onClick={handleRedirectRegister}
+                    size="small"
+                    appearance="subtle-link"
+                  >
                     Forgot password
                   </Button>
                   <LoadingButton
