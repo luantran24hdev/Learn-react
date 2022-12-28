@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "react-notifications/lib/notifications.css";
 import "./assets/style.css";
+import Button from "@material-ui/core/Button"; ///button material
+
 export default function App() {
   const isLoading = useSelector((state) => state.loading.isLoading);
   const location = useLocation();

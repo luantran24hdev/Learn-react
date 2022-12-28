@@ -57,7 +57,7 @@ export default function Register() {
       >
         {({ formProps, submitting }) => (
           <form {...formProps}>
-            <FormHeader title="Sign in" />
+            <FormHeader title="" />
             <FormSection>
               <Field
                 aria-required={true}
