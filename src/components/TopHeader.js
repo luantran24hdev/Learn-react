@@ -48,7 +48,10 @@ const TopHeader = (isRenderTopHeader) => {
 
   return (
     <StyledTopHeader isRenderTopHeader={isRenderTopHeader}>
-      <DropdownMenu trigger={userObj && userObj.email ? userObj.email : ""}>
+      <DropdownMenu
+        color="text.secondary"
+        trigger={userObj && userObj.email ? userObj.email : ""}
+      >
         <DropdownItemGroup>
           <DropdownItem
             onClick={handleRedirectProfile}

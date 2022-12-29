@@ -39,7 +39,7 @@ export const StyleFormHeader = styled.div`
   font-size: 10px;
 `;
 
-export default function Register() {
+export default function Login() {
   const history = useHistory();
   const location = useLocation();
   const dispath = useDispatch();
