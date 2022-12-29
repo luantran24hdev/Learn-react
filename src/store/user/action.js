@@ -12,7 +12,6 @@ export const actUserProfile = ({ dataUser }) => {
 };
 export const handleEditUser = (user) => {
   return async (dispatch) => {
-    console.log("user123", user);
     dispatch(actShowLoading());
     try {
       const result = await axios.put("/users/" + user.id, user);
