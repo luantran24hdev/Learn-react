@@ -29,7 +29,6 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledForm = styled.div`
-  width: 50%;
   margin: 0 auto;
   padding: 2rem 0;
   border: 1px solid rgba(0, 0, 0, 0.6);
