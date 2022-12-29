@@ -70,7 +70,7 @@ export default function UserDetail() {
           <div className={styleppp}>
             <div className="inner">
               <div className="container">
-                <h1 className="title">Edit user: {email}</h1>
+                <h1 className="title">Edit user: {email ? email : ""}</h1>
                 <div className="list">
                   <div className="form-group email-group">
                     <label htmlFor="email">Email</label>
