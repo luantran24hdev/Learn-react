@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MuiDrawer from "@mui/material/Drawer";
 import { styled, useTheme } from "@mui/material/styles";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -92,11 +92,13 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           component="nav"
         >
-          {arrSidebar.map((item) => (
-            <ListItemButton>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              {item.text}
-            </ListItemButton>
+          {arrSidebar.map((item, i) => (
+            <Link style={{ color: "rgba(0, 0, 0, 0.54)" }} to={item.path}>
+              <ListItemButton key={i}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                {item.text}
+              </ListItemButton>
+            </Link>
           ))}
         </List>
       </Drawer>
