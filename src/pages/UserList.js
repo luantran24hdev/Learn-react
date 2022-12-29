@@ -15,7 +15,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export default function Admin() {
+export default function UserList() {
   const location = useLocation();
   const history = useHistory();
   const token = useSelector((state) => state.auth.access_token);

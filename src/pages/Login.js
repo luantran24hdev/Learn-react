@@ -63,7 +63,7 @@ export default function Login() {
       console.log("----------res", res);
       if (res.ok) {
         alert("Login success!");
-        history.push("/admin");
+        history.push("/user/all");
       } else {
         console.log(res.error);
       }

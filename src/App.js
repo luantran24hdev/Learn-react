@@ -13,7 +13,7 @@ export default function App() {
   const isLoading = useSelector((state) => state.loading.isLoading);
   const location = useLocation();
   const isRenderHeader = () => {
-    let arrRouter = ["/login", "/register", "/admin", "/user"];
+    let arrRouter = ["/login", "/register", "/user/all", "/user"];
     let routerName = location.pathname;
     if (arrRouter.some((route) => routerName.includes(route))) return false;
 

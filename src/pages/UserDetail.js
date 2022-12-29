@@ -50,7 +50,7 @@ export default function UserDetail() {
       console.log("----------------", res);
       if (res.ok) {
         alert(res.data);
-        history.push("/admin");
+        history.push("/user/all");
       } else {
         console.log(res.error);
       }

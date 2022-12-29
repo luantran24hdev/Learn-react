@@ -47,7 +47,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
   const theme = useTheme();
   const history = useHistory();
   function redirectAdmin() {
-    history.push("/admin");
+    history.push("/user/all");
   }
   const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== "open",
