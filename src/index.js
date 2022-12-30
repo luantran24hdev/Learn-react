@@ -1,11 +1,20 @@
+import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { StyledEngineProvider } from "@mui/material/styles";
 
-import App from "./App";
-
+import store from "./store";
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <App />
+      </StyledEngineProvider>
+    </BrowserRouter>
+    ,
+  </Provider>,
+
   document.getElementById("root")
 );
