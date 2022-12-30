@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import Form, {
   ErrorMessage,
   Field,
@@ -41,14 +40,14 @@ export const StyleFormHeader = styled.div`
 
 export default function Login() {
   const history = useHistory();
-  const location = useLocation();
+  // const location = useLocation();
   const dispath = useDispatch();
 
   function handleRedirectRegister(e) {
     e.preventDefault();
     history.push("/register");
   }
-  const token = useSelector((state) => state.auth.access_token);
+  // const token = useSelector((state) => state.auth.access_token);
   // useEffect(() => {
   //   if (token) {
   //     history.push("/admin");

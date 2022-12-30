@@ -1,6 +1,6 @@
 import React from "react";
 import PersonCircleIcon from "@atlaskit/icon/glyph/person-circle";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import DropdownMenu, {
   DropdownItem,
   DropdownItemGroup,

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MuiDrawer from "@mui/material/Drawer";
 import { styled, useTheme } from "@mui/material/styles";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -69,7 +69,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
     <div>
       <Drawer variant="permanent" open={toggleOpen}>
         <DrawerHeader>
-          <a onClick={redirectAdmin} href style={{ cursor: "pointer" }}>
+          <a href="true" onClick={redirectAdmin} style={{ cursor: "pointer" }}>
             <img
               src="https://uploads-ssl.webflow.com/62bc7c02137f111d28762311/637b3cd92913f97e1154dbae_Logo%20Black.svg"
               alt=""
@@ -93,8 +93,12 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
           component="nav"
         >
           {arrSidebar.map((item, i) => (
-            <Link style={{ color: "rgba(0, 0, 0, 0.54)" }} to={item.path}>
-              <ListItemButton key={i}>
+            <Link
+              style={{ color: "rgba(0, 0, 0, 0.54)" }}
+              to={item.path}
+              key={i}
+            >
+              <ListItemButton>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 {item.text}
               </ListItemButton>

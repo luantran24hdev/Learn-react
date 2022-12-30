@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./components/Header";
-import TopHeader from "./components/TopHeader";
 import Footer from "./components/Footer";
 import { AppRoutes } from "./AppRouters";
 import Loading from "./components/Loading";
@@ -20,14 +19,14 @@ export default function App() {
     return true;
   };
 
-  const isRenderTopHeader = () => {
-    let arrRouter = ["/user"];
-    let routerName = location.pathname;
+  // const isRenderTopHeader = () => {
+  //   let arrRouter = ["/user"];
+  //   let routerName = location.pathname;
 
-    if (arrRouter.some((route) => routerName.includes(route))) return true;
+  //   if (arrRouter.some((route) => routerName.includes(route))) return true;
 
-    return false;
-  };
+  //   return false;
+  // };
   console.log("=========isRenderHeader", isRenderHeader());
   return (
     <div className="App">
