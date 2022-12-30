@@ -16,7 +16,9 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
-function UserTable(props) {
+function UserTable(props, { listAllUser }) {
+  console.log("-------props", props);
+  console.log("-------listAllUser123", listAllUser);
   // will get data to UserList
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;

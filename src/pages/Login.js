@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
-
+import React, { Fragment, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Form, {
   ErrorMessage,
   Field,
@@ -39,6 +39,7 @@ export const StyleFormHeader = styled.div`
 `;
 
 export default function Login() {
+  // const token = useSelector((state) => state.auth.access_token);
   const history = useHistory();
   // const location = useLocation();
   const dispath = useDispatch();
@@ -47,12 +48,13 @@ export default function Login() {
     e.preventDefault();
     history.push("/register");
   }
-  // const token = useSelector((state) => state.auth.access_token);
   // useEffect(() => {
   //   if (token) {
   //     history.push("/admin");
-  //   } else {
+  //   }else if (location === "") {
   //     // history.push("/login");
+  //   }else {
+
   //   }
   // }, [location, history, token]);
 
@@ -62,7 +64,7 @@ export default function Login() {
       console.log("----------res", res);
       if (res.ok) {
         alert("Login success!");
-        history.push("/users/all");
+        history.push("/dashboard/users/all");
       } else {
         console.log(res.error);
       }

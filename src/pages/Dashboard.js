@@ -25,26 +25,32 @@ export default function Dashboard() {
   const location = useLocation();
   const history = useHistory();
   const token = useSelector((state) => state.auth.access_token);
-  useEffect(() => {
-    if (!token) {
-      return <Redirect to="/login" />;
-    } else {
-      return <Redirect to="/dashboard/users/all" />;
-    }
-  }, [location, history, token]);
 
   const isRenderHeader = () => {
-    let arrRouter = ["/login", "/register"];
+    let arrRouter = ["/", "/login", "/register"];
     let routerName = location.pathname;
-    if (arrRouter.some((route) => routerName.includes(route))) return false;
+    console.log("routerName", routerName);
+    // if (arrRouter.indexOf((route) => routerName.includes(route))) return false;
+    if (arrRouter.indexOf(routerName) !== -1) return false;
     return true;
   };
+  // const isNotPrivate = () => {
+  //   let arrRouter = ["/", "/register"];
+  //   let routerName = location.pathname;
+  //   if (arrRouter.some((route) => routerName.includes(route))) return true;
+  //   return false;
+  // };
+  useEffect(() => {
+    if (!token) {
+      history.push("/login");
+    } else {
+      // history.push("/login");
+    }
+  }, [history, token]);
   console.log("------------", isRenderHeader());
   return (
     <Box sx={{ display: "flex" }}>
       {isRenderHeader() && <CssBaseline />}
-      {/* <CssBaseline /> */}
-      {/* <Appbar /> */}
       {isRenderHeader() && <Appbar />}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
