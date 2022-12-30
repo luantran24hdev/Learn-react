@@ -17,6 +17,32 @@ export const actSetListAllUser = (dataListUser) => ({
     dataListUser,
   },
 });
+export const handleNewUser = (user) => {
+  return async (dispatch) => {
+    dispatch(actShowLoading());
+    try {
+      const result = await axios.post("/users", user);
+      dispatch(actHideLoading());
+      console.log("actions result", result);
+      if (result.status !== 200) {
+        alert(result.error);
+        return {
+          ok: false,
+          error: result.error,
+        };
+      } else {
+        const dataUser = result.data;
+        console.log("dataUser", dataUser);
+        // localStorage.setItem('access_token_login',token);
+        // dispatch(actUserProfile({dataUser}));
+        return { ok: true, data: dataUser };
+      }
+    } catch (err) {
+      dispatch(actShowLoading());
+      return { ok: false, error: err.message };
+    }
+  };
+};
 export const handleEditUser = (user) => {
   return async (dispatch) => {
     dispatch(actShowLoading());

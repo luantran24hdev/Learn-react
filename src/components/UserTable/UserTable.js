@@ -1,4 +1,3 @@
-import * as React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -15,10 +14,35 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllUser } from "../../store/user/action";
 
-function UserTable(props, { listAllUser }) {
+function UserTable(props) {
+  //
+  const dispatch = useDispatch();
+  const [pagesize] = useState(0);
+  const [currPage, setCurrPage] = useState(0);
+  const listAllUser = useSelector(
+    (state) => state.User.listAllUser.dataListUser
+  );
+  console.log("-----------listAllUser oginrnal", listAllUser);
+  useEffect(() => {
+    const payload = {
+      pageOffset: currPage,
+      pageSize: pagesize,
+      query: "",
+    };
+    dispatch(getAllUser(payload)).then((res) => {
+      // if (res.ok && res.data.length === 0) {
+      // }
+      // console.log("-------res", res);
+    });
+  }, [dispatch, currPage, pagesize]);
+
+  //
   console.log("-------props", props);
-  console.log("-------listAllUser123", listAllUser);
+
   // will get data to UserList
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
