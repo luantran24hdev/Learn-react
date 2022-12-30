@@ -27,7 +27,7 @@ export default function App() {
 
   //   return false;
   // };
-  console.log("=========isRenderHeader", isRenderHeader());
+  // console.log("=========isRenderHeader", isRenderHeader());
   return (
     <div className="App">
       {/* {isRenderTopHeader() && <TopHeader />} */}

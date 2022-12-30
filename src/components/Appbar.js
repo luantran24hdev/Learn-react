@@ -25,7 +25,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 export default function Appbar() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);

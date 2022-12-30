@@ -47,7 +47,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
   const theme = useTheme();
   const history = useHistory();
   function redirectAdmin() {
-    history.push("/user/all");
+    history.push("/users/all");
   }
   const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== "open",
@@ -67,15 +67,19 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
   }));
   return (
     <div>
-      <Drawer variant="permanent" open={toggleOpen}>
+      <Drawer variant="permanent" open={true}>
         <DrawerHeader>
-          <a href="true" onClick={redirectAdmin} style={{ cursor: "pointer" }}>
+          <Link
+            to="/users/all"
+            onClick={redirectAdmin}
+            style={{ cursor: "pointer", width: "80%", margin: "0 auto" }}
+          >
             <img
               src="https://uploads-ssl.webflow.com/62bc7c02137f111d28762311/637b3cd92913f97e1154dbae_Logo%20Black.svg"
               alt=""
             />
-          </a>
-          <IconButton
+          </Link>
+          {/* <IconButton
             onClick={() => {
               handleDrawerClose(false);
             }}
@@ -85,7 +89,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
             ) : (
               <ChevronLeftIcon />
             )}
-          </IconButton>
+          </IconButton> */}
         </DrawerHeader>
         <Divider />
         <List

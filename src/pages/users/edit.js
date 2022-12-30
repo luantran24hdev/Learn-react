@@ -8,10 +8,10 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 
-import styleppp from "../assets/pages/user-detail.css";
-import { parseJwt } from "../helpers";
-import { handleEditUser } from "../store/user/action";
-import Appbar from "../components/Appbar";
+import styleProfileUser from "../../assets/pages/user-detail.css";
+import { parseJwt } from "../../helpers";
+import { handleEditUser } from "../../store/user/action";
+import Appbar from "../../components/Appbar";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -50,7 +50,7 @@ export default function UserDetail() {
       console.log("----------------", res);
       if (res.ok) {
         alert(res.data);
-        history.push("/user/all");
+        history.push("/users/all");
       } else {
         console.log(res.error);
       }
@@ -67,7 +67,7 @@ export default function UserDetail() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography paragraph>
-          <div className={styleppp}>
+          <div className={styleProfileUser}>
             <div className="inner">
               <div className="container">
                 <h1 className="title">Edit user: {email ? email : ""}</h1>

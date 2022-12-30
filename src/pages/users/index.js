@@ -5,10 +5,10 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
-import Appbar from "../components/Appbar";
+import Appbar from "../../components/Appbar";
 
 //page
-import UserTable from "./UserTable";
+import UserTable from "../../components/UserTable/UserTable";
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
