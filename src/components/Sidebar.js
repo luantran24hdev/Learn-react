@@ -47,7 +47,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
   const theme = useTheme();
   const history = useHistory();
   function redirectAdmin() {
-    history.push("/users/all");
+    history.push("/dashboard/users/all");
   }
   const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== "open",
@@ -70,7 +70,7 @@ export default function SidebarComp({ toggleOpen, handleDrawerClose }) {
       <Drawer variant="permanent" open={true}>
         <DrawerHeader>
           <Link
-            to="/users/all"
+            to="/dashboard/users/all"
             onClick={redirectAdmin}
             style={{ cursor: "pointer", width: "80%", margin: "0 auto" }}
           >

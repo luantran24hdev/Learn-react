@@ -9,32 +9,32 @@ const SidebarList = [
   {
     icon: <PersonIcon />,
     text: <ListItemText primary="All Users" />,
-    path: "/users/all",
+    path: "/dashboard/users/all",
   },
   {
     icon: <ArticleIcon />,
     text: <ListItemText primary="Articles" />,
-    path: "/articles/all",
+    path: "/dashboard/articles/all",
   },
   {
     icon: <StyleIcon />,
     text: <ListItemText primary="Tags" />,
-    path: "/tags/all",
+    path: "/dashboard/tags/all",
   },
   {
     icon: <PermContactCalendarIcon />,
     text: <ListItemText primary="Schedule" />,
-    path: "/schedules/all",
+    path: "/dashboard/schedules/all",
   },
   {
     icon: <PagesIcon />,
     text: <ListItemText primary="Pages" />,
-    path: "/pages/all",
+    path: "/dashboard/pages/all",
   },
   {
     icon: <MmsIcon />,
     text: <ListItemText primary="Media" />,
-    path: "/media/all",
+    path: "/dashboard/media/all",
   },
 ];
 

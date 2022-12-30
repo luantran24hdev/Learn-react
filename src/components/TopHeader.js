@@ -42,7 +42,7 @@ const TopHeader = (isRenderTopHeader) => {
     e.preventDefault();
 
     if (userObj && userObj.sub) {
-      history.push(`/users/edit/${userObj.sub}`);
+      history.push(`/dashboard/users/edit/${userObj.sub}`);
     }
   };
 
