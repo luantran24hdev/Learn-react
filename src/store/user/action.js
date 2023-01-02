@@ -11,7 +11,7 @@ export const actUserProfile = ({ dataUser }) => {
     },
   };
 };
-export const actSetListAllUser = (dataListUser) => ({
+export const actSetListAllUser = ({ dataListUser }) => ({
   type: SET_USER_LIST_All,
   payload: {
     dataListUser,
@@ -76,7 +76,6 @@ export const getAllUser = ({ pageOffset, pageSize, query }) => {
       // const result = await axios.put("/users/" + user.id, user);
       const result = await axios.get(`/users?${query ? query : ""}`);
       dispatch(actHideLoading());
-      console.log("actions result", result);
       if (result.status !== 200) {
         alert(result.error);
         return {
@@ -84,8 +83,10 @@ export const getAllUser = ({ pageOffset, pageSize, query }) => {
           error: result.error,
         };
       } else {
-        const dataListAllUsers = result.data.data;
-        dispatch(actSetListAllUser(dataListAllUsers));
+        const dataListAllUsers = result.data;
+        // const { dataListUser, metaListUser } = dataListAllUsers;
+        const dataListUser = result.data;
+        dispatch(actSetListAllUser({ dataListUser }));
         return { ok: true };
       }
     } catch (err) {

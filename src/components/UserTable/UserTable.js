@@ -23,10 +23,14 @@ function UserTable(props) {
   const dispatch = useDispatch();
   const [pagesize] = useState(0);
   const [currPage, setCurrPage] = useState(0);
-  const listAllUser = useSelector(
-    (state) => state.User.listAllUser.dataListUser
-  );
-  console.log("-----------listAllUser oginrnal", listAllUser);
+  const listAllUser = useSelector((state) => state.User.listAllUser);
+  const metaAllUser = useSelector((state) => state.User.metaAllUser);
+  // const metaAllUser = useSelector(
+  //   (state) => state.User.listAllUser.dataListUser
+  // );
+  console.log("-----------listAllUser data", listAllUser);
+  console.log("-----------metaAllUser data", metaAllUser);
+  // console.log("-----------listAllUser meta", listAllUser.meta);
   useEffect(() => {
     const payload = {
       pageOffset: currPage,

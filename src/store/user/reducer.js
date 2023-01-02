@@ -3,6 +3,7 @@ import { SET_USER_LIST_All } from "./action";
 const initState = {
   currentUser: null,
   listAllUser: [],
+  metaAllUser: {},
 };
 
 export default function UserReducer(state = initState, action) {
@@ -14,9 +15,12 @@ export default function UserReducer(state = initState, action) {
       };
 
     case SET_USER_LIST_All:
+      const listAllUser = action.payload.dataListUser.data;
+      const metaAllUser = action.payload.dataListUser.meta;
       return {
         ...state,
-        listAllUser: action.payload,
+        listAllUser: listAllUser,
+        metaAllUser: metaAllUser,
       };
 
     default:
