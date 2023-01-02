@@ -75,7 +75,9 @@ export const getAllUser = ({ pageOffset, pageSize, query }) => {
     try {
       // const result = await axios.put("/users/" + user.id, user);
       const result = await axios.get(
-        `/users?${query ? query : ""}&sort[0]=updated_at&sortby[0]=desc`
+        `/users?${
+          query ? query : ""
+        }&pagination[pageOffset]=${pageOffset}&pagination[pageSize]=${pageSize}&sort[0]=updated_at&sortby[0]=desc`
       );
       dispatch(actHideLoading());
       if (result.status !== 200) {

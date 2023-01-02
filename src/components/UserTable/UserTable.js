@@ -105,7 +105,7 @@ TablePaginationActions.propTypes = {
 export default function CustomPaginationActionsTable() {
   //
   const dispatch = useDispatch();
-  const [pagesize] = useState(0);
+  const [pagesize] = useState(100);
   const [currPage, setCurrPage] = useState(0);
   const listAllUser = useSelector((state) => state.User.listAllUser);
   const metaAllUser = useSelector((state) => state.User.metaAllUser);
