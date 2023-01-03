@@ -23,7 +23,7 @@ export default function ArticleList() {
         pageOffset: currPage,
         pageSize: pagesize,
         query: {
-          email: email,
+          title: email,
         },
       };
       dispatch(getAllArticle(payload)).then((res) => {
