@@ -98,6 +98,17 @@
 	background: #5850eb;
 	border-color: #5850eb;
 }
+.button-warning {
+	font-weight: bold;
+	line-height: 19px;
+	background: rgb(244, 67, 54);
+	border: none;
+	padding: 15px 25px;
+	border-radius: 6px;
+	color: white;
+	width: 100%;
+	margin-top: 24px;
+}
 
 .button {
 	font-weight: bold;
@@ -112,6 +123,10 @@
 }
 .button:hover {
 	background: #6e67ee;
+	cursor: pointer;
+}
+.button-warning:hover {
+	cursor: pointer;
 }
 .button:focus {
 	background: #4239e8;

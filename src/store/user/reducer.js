@@ -11,7 +11,7 @@ export default function UserReducer(state = initState, action) {
     case SET_USER_INFOR:
       return {
         ...state,
-        currentUser: action.payload.user,
+        currentUser: action.payload.currentUser.data,
       };
 
     case SET_USER_LIST_All:

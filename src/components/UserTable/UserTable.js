@@ -21,7 +21,9 @@ import { getAllUser } from "../../store/user/action";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { pink } from "@mui/material/colors";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { fetchUserById } from "../../store/user/action";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -104,17 +106,13 @@ TablePaginationActions.propTypes = {
 
 export default function CustomPaginationActionsTable() {
   //
+
   const dispatch = useDispatch();
+  const params = useParams();
   const [pagesize] = useState(100);
   const [currPage, setCurrPage] = useState(0);
   const listAllUser = useSelector((state) => state.User.listAllUser);
   const metaAllUser = useSelector((state) => state.User.metaAllUser);
-  // const metaAllUser = useSelector(
-  //   (state) => state.User.listAllUser.dataListUser
-  // );
-  console.log("-----------listAllUser data", listAllUser);
-  console.log("-----------metaAllUser data", metaAllUser);
-  // console.log("-----------listAllUser meta", listAllUser.meta);
   useEffect(() => {
     const payload = {
       pageOffset: currPage,
@@ -146,6 +144,11 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
+  const getUserId = (row) => {
+    // e.preventDefault();
+    dispatch(fetchUserById(row));
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -172,7 +175,11 @@ export default function CustomPaginationActionsTable() {
 
               <TableCell align="right">
                 <Link to={`/dashboard/users/edit/${row.id}`}>
-                  <DriveFileRenameOutlineIcon color="primary" size="small" />
+                  <DriveFileRenameOutlineIcon
+                    onClick={() => getUserId(row)}
+                    color="primary"
+                    size="small"
+                  />
                 </Link>
               </TableCell>
             </TableRow>
