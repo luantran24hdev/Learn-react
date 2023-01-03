@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Appbar from "../components/Appbar";
-
+import Loading from "../components/Loading";
 //page
 import UserTable from "../components/UserTable/UserTable";
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -21,6 +21,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function Dashboard() {
+  const isLoading = useSelector((state) => state.loading.isLoading);
   // dispacth actions and passing res to UserTable
   const location = useLocation();
   const history = useHistory();
@@ -58,6 +59,7 @@ export default function Dashboard() {
           <AppRoutes />
         </Typography>
       </Box>
+      <Loading isLoading={isLoading} />
     </Box>
   );
 }
