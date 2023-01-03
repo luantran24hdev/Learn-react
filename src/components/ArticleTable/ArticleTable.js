@@ -33,7 +33,7 @@ export default function CustomPaginationActionsTable() {
 
   const dispatch = useDispatch();
   const params = useParams();
-  const [pagesize] = useState(100);
+  const [pagesize] = useState(1000);
   const [currPage, setCurrPage] = useState(0);
   const listAllArticle = useSelector((state) => state.Article.listAllArticle);
   const metaAllArticle = useSelector((state) => state.Article.metaAllArticle);
